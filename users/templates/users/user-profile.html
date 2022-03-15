@@ -9,7 +9,7 @@
             <div class="column column--1of3">
                 <div class="card text-center">
                     <div class="card__body dev">
-                        <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
+                        <img class="avatar avatar--xl" src="{{ profile.imageURL }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
                         <p class="dev__title">{{profile.short_intro}}</p>
                         <p class="dev__location">Based in {{profile.location}}</p>
@@ -46,7 +46,7 @@
 
                         </ul>
                         {% if request.user.profile.id != profile.id %}
-                        <a href="" class="btn btn--sub btn--lg">Send Message </a>
+                        <a href="{% url 'create-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
                         {% endif %}
                     </div>
                 </div>
@@ -63,6 +63,7 @@
                         {% for skill in topSkills %}
                         <div class="devSkill">
                             <h4 class="devSkill__title">{{skill.name}}</h4>
+                            <p class="devSkill__info">{{skill.description}}</p>
                         </div>
                         {% endfor %}
 
@@ -87,7 +88,7 @@
                         <div class="column">
                             <div class="card project">
                                 <a href="{% url 'project' project.id %}" class="project">
-                                    <img class="project__thumbnail" src="{{project.featured_image.url}}"
+                                    <img class="project__thumbnail" src="{{project.imageURL}}"
                                         alt="project thumbnail" />
                                     <div class="card__body">
                                         <h3 class="project__title">{{project.title}}</h3>
